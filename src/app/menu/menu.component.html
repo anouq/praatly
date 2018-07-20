@@ -1,4 +1,6 @@
-<label class="btn btn-outline-primary btn-duo">Upload <input hidden type="file" multiple/></label>
+<label class="btn btn-outline-primary btn-duo" (change)="uploadPraat($event.target)">
+  Upload <input hidden type="file" multiple/>
+</label>
 <a href="/assets/praatscript.praat" target="_blank" rel="nofollow" class="btn btn-outline-primary btn-duo">Praat script</a>
 <button class="btn btn-outline-primary btn-duo" type="button">Demo</button>
 <a href="http://github.com/anouq/praatly" target="_blank" rel="nofollow" class="btn btn-outline-primary btn-duo">
