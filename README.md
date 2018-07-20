@@ -8,3 +8,6 @@ Praatly is an app that reads [Praat](http://www.fon.hum.uva.nl/praat/) sound obj
 npm install
 ng serve
 ```
+
+## Requirements
+This app requires at least Praat 6.0.40.
