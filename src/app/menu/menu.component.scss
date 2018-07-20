@@ -1,0 +1,27 @@
+@import '../app.component';
+
+[class*="duo"] {
+  &:nth-child(2n + 1) {
+    border-color: $pink;
+    color: $pink;
+
+    &:active:focus, &:focus, &:hover {
+      color: $white;
+      background-color: $pink;
+    }
+  }
+
+  &:nth-child(2n + 2) {
+    border-color: $blue;
+    color: $blue;
+
+    &:active:focus, &:focus, &:hover {
+      color: $white;
+      background-color: $blue;
+    }
+  }
+}
+
+.fa-github {
+  font-size: 1.3rem;
+}
