@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import { StoreService } from '../store.service';
 
 @Component({
   selector: 'app-menu',
@@ -12,6 +13,9 @@ export class MenuComponent {
   private static readonly TYPE = 'type';
   private all = [];
   private rawPraat = [];
+
+  constructor(private storeService: StoreService) {
+  }
 
   public uploadPraat(input: any): void {
     this.rawPraat = [];
@@ -55,22 +59,30 @@ export class MenuComponent {
 
     const types = [null, ...this.all // null represents total
       .map(item => item[MenuComponent.TYPE])
-      .filter((value, i, t) => t.indexOf(value) === i)];
+      .filter((value, i, t) => t.indexOf(value) === i)
+      .sort()];
+    this.storeService.setTypes(types);
 
-    types.forEach((type) => {
-      // If type of recording type is null, use all recordings; otherwise, split recordings by type
-      const byType = type === null ? this.all : _.groupBy(this.all, MenuComponent.TYPE)[type];
+    const statsMap = [];
 
-      const statsMap = _.chain(byType)
+    for (let t = 0; t < types.length; t++) {
+      // If type of recording type is null, use all recordings; otherwise, group recordings by type
+      const byType = types[t] === null ? this.all : _.groupBy(this.all, MenuComponent.TYPE)[types[t]];
+
+      statsMap[t] = _.sortBy(_.chain(byType)
         .groupBy('date')
         .map((byDate, key) => ({
           date: moment(key, 'YYYY-MMM-D').format('YYYY-MM-DD'),
           minPitch: _.ceil(_.minBy(byDate, 'minPitch')['minPitch']),
+          // TODO: Add mean pitch
           maxPitch: _.ceil(_.maxBy(byDate, 'maxPitch')['maxPitch']),
-          minutes: _.ceil(_.sumBy(byDate, 'sec') / 60),
+          minutes: moment.utc(_.sumBy(byDate, 'sec') * 1000).format('mm:ss'),
           recordings: byDate.length
         }))
-        .value();
-    });
+        .value(), 'date');
+    }
+
+    this.storeService.setStatsMap(statsMap);
   }
+
 }

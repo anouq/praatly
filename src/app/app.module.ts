@@ -7,6 +7,7 @@ import { MenuComponent } from './menu/menu.component';
 import { StatsComponent } from './stats/stats.component';
 import { PlotComponent } from './stats/plot/plot.component';
 import { TableComponent } from './stats/table/table.component';
+import { StoreService } from './store.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { TableComponent } from './stats/table/table.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [StoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

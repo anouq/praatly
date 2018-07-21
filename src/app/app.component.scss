@@ -21,3 +21,24 @@ h2 {
   box-shadow: none;
   margin: 3px;
 }
+
+[class*="blue"] {
+  background-color: $blue;
+  border-color: $blue;
+  color: $white;
+
+  &:active:focus, &:focus, &:hover {
+    background-color: $dark-blue;
+    border-color: $dark-blue;
+  }
+}
+
+[class*="pink"] {
+  background-color: $pink;
+  border-color: $pink;
+
+  &:active:focus, &:focus, &:hover {
+    background-color: $dark-pink;
+    border-color: $dark-pink;
+  }
+}

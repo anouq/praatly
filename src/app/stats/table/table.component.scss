@@ -1,0 +1,11 @@
+@import '../../app.component';
+
+button, table {
+  width: 100%;
+}
+
+th, td {
+  padding-left: 2px;
+  padding-right: 2px;
+  font-family: "Courier New", Courier, monospace;
+}
