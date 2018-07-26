@@ -71,10 +71,13 @@ export class MenuComponent {
 
       statsMap[t] = _.sortBy(_.chain(byType)
         .groupBy('date')
+        .forEach((byDate) => {
+          byDate.forEach((recording) => recording['totalPitch'] = recording['meanPitch'] * recording['n']);
+        })
         .map((byDate, key) => ({
           date: moment(key, 'YYYY-MMM-D').format('YYYY-MM-DD'),
           minPitch: _.ceil(_.minBy(byDate, 'minPitch')['minPitch']),
-          // TODO: Add mean pitch
+          meanPitch: _.ceil(_.sumBy(byDate, 'totalPitch') / _.sumBy(byDate, 'n')),
           maxPitch: _.ceil(_.maxBy(byDate, 'maxPitch')['maxPitch']),
           minutes: moment.utc(_.sumBy(byDate, 'sec') * 1000).format('mm:ss'),
           recordings: byDate.length

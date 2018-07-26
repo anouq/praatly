@@ -12,7 +12,7 @@
   <tr *ngFor="let value of typeStats">
     <td>{{ value['date'] | date: 'dd-MM-yyyy' }}</td>
     <td>{{ value['minPitch'] }}</td>
-    <td>:)</td>
+    <td>{{ value['meanPitch'] }}</td>
     <td>{{ value['maxPitch'] }}</td>
     <td>{{ value['minutes'] }}</td>
   </tr>
