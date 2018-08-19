@@ -10,6 +10,9 @@
       </button>
     </div>
     <div class="row">
+      <div [attr.id]="'stats-' + i" class="show col-lg-7">
+        <app-plot [typePlotStats]="plotStatsMap[i]" [i]="i" class="text-center"></app-plot>
+      </div>
       <div [attr.id]="'stats-' + i" class="show col-lg-5">
         <app-table [typeStats]="statsMap[i]" [i]="i"></app-table>
       </div>

@@ -7,11 +7,13 @@ import { StoreService } from '../store.service';
   styleUrls: ['./stats.component.scss']
 })
 export class StatsComponent {
+  public plotStatsMap = this.storeService.plotStatsMap;
   public statsMap = this.storeService.statsMap;
   public types = this.storeService.types;
 
   constructor(private storeService: StoreService) {
-    storeService.typesEmitter.subscribe((types) => this.types = types);
+    storeService.plotStatsMapEmitter.subscribe((plotsStatsMap) => this.plotStatsMap = plotsStatsMap);
     storeService.statsMapEmitter.subscribe((statsMap) => this.statsMap = statsMap);
+    storeService.typesEmitter.subscribe((types) => this.types = types);
   }
 }

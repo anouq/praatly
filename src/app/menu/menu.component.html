@@ -2,7 +2,10 @@
   Upload <input hidden type="file" multiple/>
 </label>
 <a href="/assets/praatscript.praat" target="_blank" rel="nofollow" class="btn btn-outline-primary btn-duo">Praat script</a>
-<button class="btn btn-outline-primary btn-duo" type="button">Demo</button>
+<button (click)="runDemo()" class="btn btn-outline-primary btn-duo" type="button">Demo</button>
 <a href="http://github.com/anouq/praatly" target="_blank" rel="nofollow" class="btn btn-outline-primary btn-duo">
   <i class="fa fa-github"></i>
 </a>
+
+<div *ngIf="inProgress" class="alert alert-info">{{ progress }}</div>
+<div *ngIf="hasError" class="alert alert-warning">{{ error }}</div>
