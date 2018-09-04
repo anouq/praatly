@@ -1,9 +1,4 @@
 form Variables
-	comment Output directory
-	text dir ./
-	comment If the directory doesn't exist, the output will be where this script is
-  	comment
-
 	comment IDs of first and last Sound objects (0 if you want all Sound objects)
 	integer Begin 0
 	integer End 0
@@ -37,7 +32,7 @@ date$ = year$ + "-" + month$ + "-" + day$
 time$ = left$(right$(dateTime$, 13), 5)
 dateTime$ = time$ + "_" + date$
 
-results$ = dir$ + dateTime$ + "_pitch.csv"
+results$ = dateTime$ + "_pitch.csv"
 writeFileLine: results$, "type,minPitch,meanPitch,maxPitch,sec,n"
 
 sounds# = selected#("Sound")
